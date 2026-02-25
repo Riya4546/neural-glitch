@@ -4,6 +4,9 @@ const ctx = canvas.getContext("2d");
 canvas.width = 500;
 canvas.height = 500;
 let gameOver = false;
+// PLAYER BEHAVIOR TRACKING
+let moveLeftCount = 0;
+let moveRightCount = 0;
 // PLAYER
 const player = {
   x: canvas.width / 2 - 10,
@@ -42,8 +45,15 @@ setInterval(spawnObstacle, 1000);
 
 // UPDATE LOGIC
 function update() {
-  if (keys["ArrowLeft"]) player.x -= player.speed;
-  if (keys["ArrowRight"]) player.x += player.speed;
+ if (keys["ArrowLeft"]) {
+  player.x -= player.speed;
+  moveLeftCount++;
+}
+
+if (keys["ArrowRight"]) {
+  player.x += player.speed;
+  moveRightCount++;
+}
   if (keys["ArrowUp"]) player.y -= player.speed;
   if (keys["ArrowDown"]) player.y += player.speed;
 
